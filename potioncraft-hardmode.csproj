@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
-    <RootNamespace>catgocri.HardMode.PotionCraft</RootNamespace>
+    <RootNamespace>catgocrihxpmods.HardMode.PotionCraft</RootNamespace>
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
