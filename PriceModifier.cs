@@ -1,6 +1,6 @@
 using HarmonyLib;
 
-namespace catgocri.HardMode.PotionCraft
+namespace catgocrihxpmods.HardMode.PotionCraft
 {
     [HarmonyPatch(typeof(TradeManager), "GetDiscountForItem")]
     public static class MyPatch3 
