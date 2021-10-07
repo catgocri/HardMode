@@ -1,4 +1,4 @@
-namespace catgocri.HardMode.PotionCraft
+namespace catgocrihxpmods.HardMode.PotionCraft
 {
     // Reflection methods by RoboPhred
     public static class Reflection
