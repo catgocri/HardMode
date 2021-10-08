@@ -25,17 +25,23 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             }
         }
 
-      void LoadFromConfig(ConfigFile config)
-      {
+        void LoadFromConfig(ConfigFile config)
+        {
             HardModeModifier tutorialModifier = new NoStartTutorialModifier();
             NoStartTutorialModifier.instance = tutorialModifier;
             NoStartTutorialModifier.instance.LoadFromBindings(config);
 
             HardModeModifier highlanderModifier = new HighlanderModifier();
-            NoStartTutorialModifier.instance = highlanderModifier;
-            NoStartTutorialModifier.instance.LoadFromBindings(config);
+            HighlanderModifier.instance = highlanderModifier;
+            HighlanderModifier.instance.LoadFromBindings(config);
+
+            HardModeModifier priceModifier = new PriceModifier();
+            PriceModifier.instance = priceModifier;
+            PriceModifier.instance.LoadFromBindings(config);
+
+            HardModeModifier taxModifier = new TaxModifier();
+            TaxModifier.instance = taxModifier;
+            TaxModifier.instance.LoadFromBindings(config);
         }
-
-
     }
 }
