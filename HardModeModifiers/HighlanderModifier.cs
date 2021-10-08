@@ -1,12 +1,6 @@
 ﻿using BepInEx.Configuration;
-using HarmonyLib;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+using catgocrihxpmods.HardMode.PotionCraft.GameHooks;
 using static Potion;
 
 namespace catgocrihxpmods.HardMode.PotionCraft
@@ -20,62 +14,27 @@ namespace catgocrihxpmods.HardMode.PotionCraft
         {
             SetActive(config.Bind(name + " Settings", "active", true, "If active, potions will fail when adding more than the amount detailed below of a single ingredient").Value);
             maxIngredientAmount = config.Bind(name + " Settings", "maxDuplicateIngredients", 1, "1 = True Highlander.").Value;
-        }
 
-
-
-        public void onIngredientAdded(Ingredient ingredient)
-        {
-            IEnumerable<UsedComponent> component = (from comp in Managers.Potion.usedComponents
-                                                    where comp.componentType == UsedComponent.ComponentType.InventoryItem && (comp.componentObject as InventoryItem).IsSame(ingredient)
-                                                    select comp);
-            //We should only get one here
-            foreach (UsedComponent comp in component)
+            if (this.active)
             {
-                 //Where the magic happens
-                if(comp.amount > maxIngredientAmount)
-                {
-                    //Debug.Log("There can only be one!");
-                    var indicator = Managers.RecipeMap.indicator;
-                    indicator.GetType().GetTypeInfo().GetDeclaredMethod("OnIndicatorRuined").Invoke(indicator, null);
-                }
+                IngredientAddedEvent.OnIngredientAdded += OnIngredientAdded;
             }
-           
-
         }
 
-
-    }
-
-
-    /*
-    [HarmonyPatch(typeof(PotionCraftPanel.PotionCraftPanel))]
-    [HarmonyPatch("Awake")]
-    class OnPotionUpdatePatch
-    {
-        static void Postfix()
+        private void OnIngredientAdded(object sender, IngredientAddedEventArgs e)
         {
-            var mod = HighlanderModifier.instance as HighlanderModifier;
-            Managers.Potion.potionCraftPanel.onPotionUpdated.AddListener(mod.onPotionUpdated);
-        }
-    }
-    */
+            var ingredient = e.Ingredient;
 
-    [HarmonyPatch(typeof(ObjectBased.Stack.Stack))]
-    [HarmonyPatch("AddIngredientPathToMapPath")]
-    class OnIngredientsAddPatch
-    {
-        static void Postfix(ObjectBased.Stack.Stack __instance)
-        {
-            if (!HighlanderModifier.instance.active)
+            var components = from comp in Managers.Potion.usedComponents
+                             where comp.componentType == UsedComponent.ComponentType.InventoryItem
+                             let componentItem = comp.componentObject as InventoryItem
+                             where componentItem?.IsSame(ingredient) == true
+                             select comp;
+
+            if (components.Any(x => x.amount > maxIngredientAmount))
             {
-                return;
+                PotionHealth.KillPotion();
             }
-
-            Ingredient ingredient = (Ingredient)__instance.inventoryItem;
-            var mod = HighlanderModifier.instance as HighlanderModifier;
-
-            mod.onIngredientAdded(ingredient);
         }
     }
 }
