@@ -1,4 +1,5 @@
 # PotionCraft Hard Mode
+![png](https://cdn.discordapp.com/attachments/895710238060216370/895752054323183646/Untitled_design_23.png)
 For those who are seeking a challenge. Hard Mode multiplies Potion Craft's difficulty by tenfold, giving you a nice challenge. All of the mods features are toggleable and configurable, allowing you to customize your challenge! You can find the config file in **Potion Craft\BepInEx\Config.**
 ## Features
 The features this mod adds are:
