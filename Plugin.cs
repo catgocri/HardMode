@@ -42,6 +42,10 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             HardModeModifier taxModifier = new TaxModifier();
             TaxModifier.instance = taxModifier;
             TaxModifier.instance.LoadFromBindings(config);
+
+            HardModeModifier dangerZoneModifier = new DangerZoneModifier();
+            DangerZoneModifier.instance = dangerZoneModifier;
+            DangerZoneModifier.instance.LoadFromBindings(config);
         }
     }
 }
