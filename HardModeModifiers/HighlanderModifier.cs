@@ -23,14 +23,9 @@ namespace catgocrihxpmods.HardMode.PotionCraft
         }
 
 
-        public void onPotionUpdated()
-        {
-            return;
-        }
 
         public void onIngredientAdded(Ingredient ingredient)
         {
-            //Debug.Log(ingredient);
             IEnumerable<UsedComponent> component = (from comp in Managers.Potion.usedComponents
                                                     where comp.componentType == UsedComponent.ComponentType.InventoryItem && (comp.componentObject as InventoryItem).IsSame(ingredient)
                                                     select comp);
@@ -40,7 +35,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
                  //Where the magic happens
                 if(comp.amount > maxIngredientAmount)
                 {
-                    Debug.Log("There can only be one!");
+                    //Debug.Log("There can only be one!");
                     var indicator = Managers.RecipeMap.indicator;
                     indicator.GetType().GetTypeInfo().GetDeclaredMethod("OnIndicatorRuined").Invoke(indicator, null);
                 }
@@ -49,17 +44,11 @@ namespace catgocrihxpmods.HardMode.PotionCraft
 
         }
 
-        public int getIngredientCountInUsedComponents(Ingredient ingredient)
-        {
-            /*var bla = from component in Managers.Potion.usedComponents
-                      where component.ing*/
-            return 0;
-        }
 
     }
 
 
-
+    /*
     [HarmonyPatch(typeof(PotionCraftPanel.PotionCraftPanel))]
     [HarmonyPatch("Awake")]
     class OnPotionUpdatePatch
@@ -70,6 +59,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             Managers.Potion.potionCraftPanel.onPotionUpdated.AddListener(mod.onPotionUpdated);
         }
     }
+    */
 
     [HarmonyPatch(typeof(ObjectBased.Stack.Stack))]
     [HarmonyPatch("AddIngredientPathToMapPath")]
