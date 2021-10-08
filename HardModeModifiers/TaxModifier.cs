@@ -6,7 +6,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
 {
     public class TaxModifier : HardModeModifier
     {
-        public new string name = "Markup Prices";
+        public new string name = "Taxing";
         public override void LoadFromBindings(ConfigFile config)
         {
 			SetActive(config.Bind(name + " Settings", "doTaxes", true, "If the game should subtract money from you each day.").Value);
