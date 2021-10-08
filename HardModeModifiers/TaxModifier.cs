@@ -13,6 +13,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
 
         //I think we could add an escalation mode that increases the taxPercentage over time.
 
+
         public override void LoadFromBindings(ConfigFile config)
         {
 			SetActive(config.Bind(name + " Settings", "doTaxes", true, "If the game should subtract money from you each day.").Value);
