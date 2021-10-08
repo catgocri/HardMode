@@ -5,9 +5,9 @@ The features this mod adds are:
 - Merchants are always selling at higher prices. (Configurable & Toggleable)
 - Daily gold tax of 5%. (Configurable & Toggleable)
 - Highlander mode, adding too many of one ingredient fails the potion. (Configurable & Toggleable)
+- Bone zones are lethal. (Toggleable)
 ### Planned Features
 - Less ingredients from garden.
-- Bone zones are lethal.
 - Health loss when moving. 
 ## Installation
 This mod uses BepInEx 5! BepInEx is a mod loader, basically it is what puts the edited code into the game.
