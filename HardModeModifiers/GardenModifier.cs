@@ -11,7 +11,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
         public new string name = "Garden";
         public override void LoadFromBindings(ConfigFile config)
         {
-            SetActive(config.Bind(name + " Settings", "doGardenModifier", true, "If the gardens harvest count should be modified.").Value);
+            SetActive(config.Bind(name + " Settings", "doGardenModifier", true, "If the garden's harvest count should be modified.").Value);
 
             if (this.active)
             {
