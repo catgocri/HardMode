@@ -9,7 +9,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
     {
         public static EventHandler<UpdateHealthEventArgs> OnUpdateHealth;
 
-        static bool Postfix(IndicatorMapItem __instance)
+        static bool Prefix(IndicatorMapItem __instance)
         {
             var e = new UpdateHealthEventArgs();
             OnUpdateHealth?.Invoke(null, e);
