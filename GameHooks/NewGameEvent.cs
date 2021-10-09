@@ -9,7 +9,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
     {
         public static EventHandler<NewGameEventArgs> OnNewGame;
 
-        static bool Postfix()
+        static bool Prefix()
         {
             var e = new NewGameEventArgs();
             OnNewGame?.Invoke(null, e);
