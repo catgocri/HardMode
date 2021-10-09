@@ -9,7 +9,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
     {
         public static EventHandler<ItemDiscountEventArgs> OnCalculateItemDiscount;
 
-        static bool Postfix(ref float __result, InventoryItem item)
+        static bool Prefix(ref float __result, InventoryItem item)
         {
             var e = new ItemDiscountEventArgs(item);
             OnCalculateItemDiscount?.Invoke(null, e);
