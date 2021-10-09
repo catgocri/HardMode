@@ -10,6 +10,8 @@ The features this mod adds are:
 ### Planned Features
 - Less ingredients from garden.
 - Health loss when moving. 
+## Known Bugs
+- Game shows that you have been taxed 5 gold on startup (even though you haven't).
 ## Installation
 This mod uses BepInEx 5! BepInEx is a mod loader, basically it is what puts the edited code into the game.
 - Install [BepInEx 5](https://github.com/BepInEx/BepInEx/releases) and extract the zip file.
