@@ -1,6 +1,8 @@
 # PotionCraft Hard Mode
 ![png](https://cdn.discordapp.com/attachments/895710238060216370/895752054323183646/Untitled_design_23.png)
 For those who are seeking a challenge. Hard Mode multiplies Potion Craft's difficulty by tenfold, giving you a nice challenge. All of the mods features are either toggleable or configurable, allowing you to customize your challenge! You can find the config file in **Potion Craft\BepInEx\Config.**
+
+If anyone can get a legitimate Philosophers Stone with this mod enabled you earn our respect haha.
 ## Features
 The features this mod adds are:
 - Merchants are always selling at higher prices. (Configurable & Toggleable)
