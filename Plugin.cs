@@ -46,6 +46,10 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             HardModeModifier dangerZoneModifier = new DangerZoneModifier();
             DangerZoneModifier.instance = dangerZoneModifier;
             DangerZoneModifier.instance.LoadFromBindings(config);
+
+            HardModeModifier gardenModifier = new GardenModifier();
+            GardenModifier.instance = gardenModifier;
+            GardenModifier.instance.LoadFromBindings(config);
         }
     }
 }
