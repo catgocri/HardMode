@@ -6,7 +6,7 @@ If anyone can get a legitimate Philosophers Stone with this mod enabled you earn
 ## Features
 The features this mod adds are:
 - Merchants are always selling at higher prices. (Configurable & Toggleable)
-- Daily gold tax of 5%. (Configurable & Toggleable)
+- Daily gold tax of 5% after reaching 500 gold. (Configurable & Toggleable)
 - Highlander mode, adding too many of one ingredient fails the potion. (Configurable & Toggleable)
 - Bone zones are lethal. (Toggleable)
 - Less ingredients from garden. (Toggleable)
