@@ -1,6 +1,7 @@
 
 using System;
 using HarmonyLib;
+using UnityEngine;
 
 namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 {
@@ -12,18 +13,20 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
         static bool Prefix(IndicatorMapItem __instance)
         {
             var e = new UpdateHealthEventArgs();
+            e.Health = Reflection.GetPrivateField<float>(__instance, "health");
+            e.VisualHealth = Reflection.GetPrivateField<float>(__instance, "visualHealth");
+            
             OnUpdateHealth?.Invoke(null, e);
-            if (e.Health.HasValue)
+
+            Reflection.SetPrivateField<float>(__instance, "health", (float)e.Health );
+            Reflection.SetPrivateField<float>(__instance, "visualHealth", (float)e.VisualHealth);
+
+            if (e.Health <= 0)
             {
-                Reflection.SetPrivateField(__instance, "health", e.Health);
-                if (e.Health <= 0)
-                {
-                    KillPotion();
-                }
-                return false;
+                KillPotion();
             }
 
-            return true;
+            return !(bool)e.Handled;
         }
 
         public static void KillPotion()
@@ -35,5 +38,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
     public class UpdateHealthEventArgs : EventArgs
     {
         public float? Health { get; set; }
+        public float? VisualHealth { get; set; }
+        public bool? Handled { get; set; } = false;
     }
 }
