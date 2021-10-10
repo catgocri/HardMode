@@ -6,14 +6,14 @@ using UnityEngine;
 namespace catgocrihxpmods.HardMode.PotionCraft
 {
     [BepInPlugin("net.catgocrihxpmods.PotionCraft.HardMode", "Potion Craft Hard Mode", "1.0")]
-    public class TemplatePlugin : BaseUnityPlugin
+    public class HardModePlugin : BaseUnityPlugin
     {
         public static ConfigEntry<bool> useConfig;
 
         void Awake()
         {
             Debug.Log(@"[HardMode]: Loaded");
-            var harmony = new Harmony("net.catgocrihxpmods.PotionCraft.Template");
+            var harmony = new Harmony("net.catgocrihxpmods.PotionCraft.HardMode");
             harmony.PatchAll();
 
             //Don't actually turn this off. Will likely break the game c:
