@@ -50,6 +50,10 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             HardModeModifier gardenModifier = new GardenModifier();
             GardenModifier.instance = gardenModifier;
             GardenModifier.instance.LoadFromBindings(config);
+
+            HardModeModifier deteriorationModifer = new DeteriorationModifier();
+            DeteriorationModifier.instance = deteriorationModifer;
+            DeteriorationModifier.instance.LoadFromBindings(config);
         }
     }
 }
