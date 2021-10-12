@@ -5,7 +5,7 @@
 
 ### NOT RECOMMENDED FOR USE ON OLD SAVES. MAKE A NEW SAVE FOR THIS MOD.
 
-For those who are seeking a challenge. Hard Mode multiplies Potion Craft's difficulty by tenfold, giving you a nice challenge. All of the mods features are either toggleable or configurable, allowing you to customize your challenge! You can find the config file in **Potion Craft\BepInEx\Config.**
+For those who are seeking a challenge. Hard Mode multiplies Potion Craft's difficulty by tenfold, giving you a nice challenge. All of the mod's challenge features are either toggleable or configurable, allowing you to customize your challenge! You can find the config file in **Potion Craft\BepInEx\Config.**
 
 If anyone can get a legitimate Philosophers Stone with this mod enabled you earn our respect haha.
 ## Features
