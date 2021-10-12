@@ -1,6 +1,7 @@
 
 using System;
 using System.Reflection;
+using BasicMod;
 using HarmonyLib;
 using ObjectBased.RecipeMap.RecipeMapItem.IndicatorMapItem;
 using TMPro;
@@ -25,9 +26,10 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 		public static void Start()
         {
 			AddHealthText();
+			AddSprite();
 			OnUpdateHealth += (sender, e) =>
 			{
-				TMPHealth.text = "Health: " + Mathf.FloorToInt(health * 100f).ToString();
+				TMPHealth.text = "HardMode\nHealth: " + Mathf.FloorToInt(health * 100f).ToString();
 			};
         }
 
@@ -54,6 +56,20 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 			{
 				textHolder.transform.SetParent(panel.transform);
 			}
+		}
+
+		public static void AddSprite()
+		{
+			var spriteHolder = new GameObject();
+			spriteHolder.name = "HardModeSpriteHolder";
+			spriteHolder.transform.Translate(4.5f, -1f, 0.0f);
+			spriteHolder.layer = 5;
+
+			var sprite = spriteHolder.AddComponent<SpriteRenderer>();
+			sprite.sprite = SpriteLoader.LoadSpriteFromFile("hardmodelogosmall.png");
+			sprite.sortingLayerID = 1812034761;
+
+
 		}
 
 		public static void SetHealth(float newHealth)
