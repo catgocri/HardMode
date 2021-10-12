@@ -20,6 +20,7 @@ The features this mod adds are:
 - Potion health is directly correlated with potion tier. You will need health for higher tiers, keep yer potions healthy. (Configurable & Toggleable)
 - A health counter showing the exact amount of potion health your potion has.
 - Integrated tutorial skip, so you can get going faster on a new save.
+- No automatic health regain when outside bone zone.
 ## Config
 - `damagePotionOnMove` Makes the potion take damage when it moves. (Boolean)
 - `damageRate` The rate potion takes to deteriorate. (Float)
