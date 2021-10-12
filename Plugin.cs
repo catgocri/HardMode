@@ -2,6 +2,7 @@ using BepInEx;
 using BepInEx.Configuration;
 using catgocrihxpmods.HardMode.PotionCraft.GameHooks;
 using HarmonyLib;
+using TMPro;
 using UnityEngine;
 
 namespace catgocrihxpmods.HardMode.PotionCraft
@@ -24,6 +25,9 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             {
                 LoadFromConfig(Config);
             }
+
+            PotionHealth.Start();
+
         }
 
         void LoadFromConfig(ConfigFile config)
@@ -66,5 +70,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             GardenModifier.instance = gardenModifier;
             GardenModifier.instance.LoadFromBindings(config);
         }
+
+       
     }
 }

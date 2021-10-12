@@ -3,6 +3,7 @@ using System;
 using System.Reflection;
 using HarmonyLib;
 using ObjectBased.RecipeMap.RecipeMapItem.IndicatorMapItem;
+using TMPro;
 using UnityEngine;
 using Utils.Extensions;
 using static ProgressState;
@@ -18,6 +19,42 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
         public static float health = 1.0f;
         public static float visualHealth = 1.0f;
 		public static float boneDamage = 0.4f;//Vanilla
+		public static TextMeshPro TMPHealth;
+
+
+		public static void Start()
+        {
+			AddHealthText();
+			OnUpdateHealth += (sender, e) =>
+			{
+				TMPHealth.text = "Health: " + Mathf.FloorToInt(health * 100f).ToString();
+			};
+        }
+
+		public static void AddHealthText()
+		{
+			var textHolder = new GameObject();
+			textHolder.name = "PotionHealthTextHolder";
+			textHolder.transform.Translate(4.5f, -2.0f, 0.0f);
+			textHolder.layer = 5;
+
+			TMPHealth = textHolder.AddComponent<TextMeshPro>();
+			TMPHealth.alignment = TextAlignmentOptions.Center;
+			TMPHealth.enableAutoSizing = true;
+			TMPHealth.sortingLayerID = -1650695527;
+			TMPHealth.sortingOrder = 100;
+			TMPHealth.fontSize = 4;
+			TMPHealth.fontSizeMin = 4;
+			TMPHealth.fontSizeMax = 4;
+			TMPHealth.color = Color.black;
+			TMPHealth.text = "Health";
+
+			GameObject panel = GameObject.Find("Room Lab/RecipeMap In Room/UI");
+			if (panel is not null)
+			{
+				textHolder.transform.SetParent(panel.transform);
+			}
+		}
 
 		public static void SetHealth(float newHealth)
 		{
