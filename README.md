@@ -10,8 +10,9 @@ The features this mod adds are:
 - Highlander mode, adding too many of one ingredient fails the potion. (Configurable & Toggleable)
 - Bone zones are lethal. (Toggleable)
 - Less ingredients from garden. (Toggleable)
-### Planned Features
-- Health loss when moving. 
+- Potion Deterioration. This causes your potion to lose health when it moves through the map. (Configurable & Toggleable)
+- As a follow up to that pouring your base will heal the potion. (Configurable & Toggleable)
+- Potion health is directly correlated with potion tier. You will need health for higher tiers, keep yer potions healthy. (Configurable & Toggleable)
 ## Known Bugs
 - Game shows that you have been taxed 5 gold on startup (even though you haven't).
 ## Installation
