@@ -12,7 +12,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
 
         public override void LoadFromBindings(ConfigFile config)
         {
-            SetActive(config.Bind(name + " Settings", "active", true, "If active, potions will fail when adding more than the amount detailed below of a single ingredient").Value);
+            SetActive(config.Bind(name + " Settings", "highlanderActive", true, "If active, potions will fail when adding more than the amount detailed below of a single ingredient").Value);
             maxIngredientAmount = config.Bind(name + " Settings", "maxDuplicateIngredients", 1, "1 = True Highlander.").Value;
 
             if (this.active)

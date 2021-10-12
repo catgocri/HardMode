@@ -15,8 +15,8 @@ namespace catgocrihxpmods.HardMode.PotionCraft
         public float rate = 0.3f;
         public override void LoadFromBindings(ConfigFile config)
         {
-            SetActive(config.Bind(name + " Settings", "active", true, "Potion health affects tier").Value);
-            rate = config.Bind(name + " Settings", "rate", 0.3f, "The amount health contributes to tier").Value;
+            SetActive(config.Bind(name + " Settings", "potionHealthAffectsTier", true, "Potion health affects tier").Value);
+            rate = config.Bind(name + " Settings", "potionHealthAffectsTierRate", 0.3f, "The amount health contributes to tier").Value;
 
             if (this.active)
             {
