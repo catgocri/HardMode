@@ -1,5 +1,6 @@
 using BepInEx;
 using BepInEx.Configuration;
+using catgocrihxpmods.HardMode.PotionCraft.GameHooks;
 using HarmonyLib;
 using UnityEngine;
 
@@ -27,6 +28,8 @@ namespace catgocrihxpmods.HardMode.PotionCraft
 
         void LoadFromConfig(ConfigFile config)
         {
+            PotionHealth.boneDamage = -Config.Bind("Hardmode main settings", "boneDamage", 0.8f, "The amount of damage you take while moving a full unit touching bones. Vanilla default is 0.4.").Value;
+
             HardModeModifier tutorialModifier = new NoStartTutorialModifier();
             NoStartTutorialModifier.instance = tutorialModifier;
             NoStartTutorialModifier.instance.LoadFromBindings(config);
@@ -43,17 +46,25 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             TaxModifier.instance = taxModifier;
             TaxModifier.instance.LoadFromBindings(config);
 
-            HardModeModifier dangerZoneModifier = new DangerZoneModifier();
+            /*HardModeModifier dangerZoneModifier = new DangerZoneModifier();
             DangerZoneModifier.instance = dangerZoneModifier;
-            DangerZoneModifier.instance.LoadFromBindings(config);
-
-            HardModeModifier gardenModifier = new GardenModifier();
-            GardenModifier.instance = gardenModifier;
-            GardenModifier.instance.LoadFromBindings(config);
+            DangerZoneModifier.instance.LoadFromBindings(config);*/
 
             HardModeModifier deteriorationModifer = new DeteriorationModifier();
             DeteriorationModifier.instance = deteriorationModifer;
             DeteriorationModifier.instance.LoadFromBindings(config);
+
+            HardModeModifier waterhealsModifer = new PouringWaterHealsModifier();
+            PouringWaterHealsModifier.instance = waterhealsModifer;
+            PouringWaterHealsModifier.instance.LoadFromBindings(config);
+
+            HardModeModifier healthaffectstierModifer = new HealthAffectsPotionTier();
+            HealthAffectsPotionTier.instance = healthaffectstierModifer;
+            HealthAffectsPotionTier.instance.LoadFromBindings(config);
+
+            HardModeModifier gardenModifier = new GardenModifier();
+            GardenModifier.instance = gardenModifier;
+            GardenModifier.instance.LoadFromBindings(config);
         }
     }
 }

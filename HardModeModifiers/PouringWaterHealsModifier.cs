@@ -10,30 +10,29 @@ namespace catgocrihxpmods.HardMode.PotionCraft
 
     //Should be loaded after DangerZoneModifier ( I think)
 
-    public class DeteriorationModifier : HardModeModifier
+    public class PouringWaterHealsModifier : HardModeModifier
     {
-        public new string name = "Deterioration";
+        public new string name = "Water heals";
         public float rate = 0.01f;
         public override void LoadFromBindings(ConfigFile config)
         {
-            SetActive(config.Bind(name + " Settings", "damagePotionOnMove", true, "Makes the potion take damage when it moves.").Value);
-            rate = config.Bind(name + " Settings", "damageRate", 0.002f, "The rate potion takes to deteriorate.").Value;
+            SetActive(config.Bind("Deterioration Settings", "pouringWaterHeals", true, "Heal the potion by pouring in base.").Value);
+            rate = config.Bind("Deterioration Settings", "healingRate", 0.005f, "The rate to heal by.").Value;
+
             if (this.active)
             {
 
-                MoveIndicatorAlongPathEvent.OnMoveIndicatorAlongPath += (sender, e) =>
+                MoveIndicatorTowardsBaseEvent.OnMoveIndicatorTowardsBase += (sender, e) =>
                 {
-
-                    Transform indicatorContainer = Managers.RecipeMap.recipeMapObject.indicatorContainer;
-                    Vector2 vector = indicatorContainer.localPosition;
-                    Vector2 v = e.TargetPosition - vector;
-                    if (v.magnitude != 0)
-                    {
-                        PotionHealth.SetHealth(PotionHealth.health - (v.magnitude * rate));
-                    }
-
-
+                    RecipeMapManager RMM = Managers.RecipeMap;
+                    Vector2 objectLocalPosition = RMM.currentMap.potionBaseMapItem.transform.localPosition;
+                    Vector2 vector = RMM.recipeMapObject.indicatorContainer.localPosition;
+                    Vector2 vector2 = Vector2.MoveTowards(vector, objectLocalPosition, RMM.GetSpeedOfMovingTowardsBase(e.liquidAmount));
+                    float movedDistance = (vector2 - vector).magnitude;
+                    PotionHealth.SetHealth(PotionHealth.health + (movedDistance* rate));
                 };
+
+
             }
 
         }

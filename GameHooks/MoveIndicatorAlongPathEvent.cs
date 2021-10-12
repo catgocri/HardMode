@@ -13,7 +13,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
     {
         public static EventHandler<MoveIndicatorAlongPathEventArgs> OnMoveIndicatorAlongPath;
 
-        static void Postfix(IndicatorMapItem __instance)
+        static void Prefix(IndicatorMapItem __instance)
         {
             var e = new MoveIndicatorAlongPathEventArgs(__instance.targetPosition);
             OnMoveIndicatorAlongPath?.Invoke(null, e);

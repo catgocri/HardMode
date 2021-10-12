@@ -14,11 +14,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             {
                 PotionHealth.OnUpdateHealth += (sender, e) =>
                 {
-                    if (Managers.RecipeMap.indicator.dangerZoneIds.Count > 0)
-                    {
-                        // PotionHealth will apply the potion failure effect for us.
-                        e.Health = 0;
-                    }
+                    //Sorry! It kept crashing my client while I was working on it :(
                 };
             }
         }
