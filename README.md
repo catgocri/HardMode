@@ -21,7 +21,7 @@ The features this mod adds are:
 - Integrated tutorial skip, so you can get going faster on a new save. (Toggleable)
 - A health counter showing the exact amount of potion health your potion has.
 - No automatic health regain when outside bone zone.
-## Config
+## Config (Found at BepInEx/Config)
 - `damagePotionOnMove` Makes the potion take damage when it moves. (Boolean)
 - `damageRate` The rate at which the potion deteriorates. (Float)
 - `pouringWaterHeals` Heal the potion by pouring in base. (Boolean)
