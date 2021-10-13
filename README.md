@@ -18,12 +18,12 @@ The features this mod adds are:
 - Potion Deterioration. This causes your potion to lose health when it moves through the map. (Configurable & Toggleable)
 - As a follow up to that pouring your base will heal the potion. (Configurable & Toggleable)
 - Potion health is directly correlated with potion tier. You will need health for higher tiers, keep yer potions healthy. (Configurable & Toggleable)
+- Integrated tutorial skip, so you can get going faster on a new save. (Toggleable)
 - A health counter showing the exact amount of potion health your potion has.
-- Integrated tutorial skip, so you can get going faster on a new save.
 - No automatic health regain when outside bone zone.
-## Config
+## Config (Found at BepInEx/Config)
 - `damagePotionOnMove` Makes the potion take damage when it moves. (Boolean)
-- `damageRate` The rate potion takes to deteriorate. (Float)
+- `damageRate` The rate at which the potion deteriorates. (Float)
 - `pouringWaterHeals` Heal the potion by pouring in base. (Boolean)
 - `healingRate` The rate to heal by. (Float)
 - `doGardenModifier` If the garden's harvest count should be modified. (Boolean)
@@ -47,12 +47,12 @@ This mod uses BepInEx 5! BepInEx is a mod loader, basically it is what puts the 
 - Drag the extracted folder into your Potion Craft folder, you should be able to find the Potion Craft folder at `C:\Program Files (x86)\Steam\steamapps\common\Potion Craft`
 - Run Potion Craft once with BepInEx installed.
 - Download the mod from the [GitHub](https://github.com/catgocri/HardMode/releases) page.
-- Drag `potioncraft-hardmode.dll` into `Potion Craft\BepInEx\Plugins`
+- Drag `potioncraft-hardmode.dll` and the `assets` folder into `Potion Craft\BepInEx\Plugins`
 - You are good to go!
 ## Deinstallation
 Uninstalling this mod is as easy as deleting one file, you don't even need to delete [BepInEx](https://github.com/BepInEx/BepInEx/releases)!
 - Navigate to `Potion Craft\BepInEx\Plugins`
-- Remove `potioncraft-hardmode.dll` from the folder.
+- Remove `potioncraft-hardmode.dll` and the `assets` folder from the folder.
 - You are done!
 
 c:

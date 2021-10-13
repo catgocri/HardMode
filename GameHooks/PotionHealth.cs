@@ -1,7 +1,6 @@
 
 using System;
 using System.Reflection;
-using BasicMod;
 using HarmonyLib;
 using ObjectBased.RecipeMap.RecipeMapItem.IndicatorMapItem;
 using TMPro;

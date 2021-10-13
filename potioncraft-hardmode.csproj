@@ -10,6 +10,9 @@
     <Reference Include="BepInEx.Harmony" CopyToPublishDirectory="Never">
       <HintPath>.\externals\BepInEx.Harmony.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule" CopyToPublishDirectory="Never">
+      <HintPath>.\externals\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro" CopyToPublishDirectory="Never">
       <HintPath>.\externals\Unity.TextMeshPro.dll</HintPath>
     </Reference>
