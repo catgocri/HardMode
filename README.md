@@ -3,6 +3,8 @@
 
 **Developed as a collaboration project by [catgocri](https://github.com/catgocri) & [hxpmods](https://github.com/hxpmods).**
 
+**This mod uses BasicMod, a Potion Craft modding library.**
+
 ### NOT RECOMMENDED FOR USE ON OLD SAVES. MAKE A NEW SAVE FOR THIS MOD.
 
 For those who are seeking a challenge. Hard Mode multiplies Potion Craft's difficulty by tenfold, giving you a nice challenge. Nearly all of the mod's challenge features are either toggleable or configurable, allowing you to customize your challenge! You can find the config file in **Potion Craft\BepInEx\Config.**
@@ -13,7 +15,7 @@ The features this mod adds are:
 - Merchants are always selling at higher prices. (Configurable & Toggleable)
 - Daily gold tax of 5% after reaching 500 gold. (Configurable & Toggleable)
 - Highlander mode, adding too many of one ingredient fails the potion. (Configurable & Toggleable)
-- Bone zones are buffed. (Configureable & Toggleable)
+- Bone zones are buffed. (Configurable & Toggleable)
 - Less ingredients from garden. (Toggleable)
 - Potion Deterioration. This causes your potion to lose health when it moves through the map. (Configurable & Toggleable)
 - As a follow up to that pouring your base will heal the potion. (Configurable & Toggleable)
@@ -47,12 +49,12 @@ This mod uses BepInEx 5! BepInEx is a mod loader, basically it is what puts the 
 - Drag the extracted folder into your Potion Craft folder, you should be able to find the Potion Craft folder at `C:\Program Files (x86)\Steam\steamapps\common\Potion Craft`
 - Run Potion Craft once with BepInEx installed.
 - Download the mod from the [GitHub](https://github.com/catgocri/HardMode/releases) page.
-- Drag `potioncraft-hardmode.dll` and the `assets` folder into `Potion Craft\BepInEx\Plugins`
+- Drag `potioncraft-hardmode.dll`, `BasicMod.dll` and the `assets` folder into `Potion Craft\BepInEx\Plugins`
 - You are good to go!
 ## Deinstallation
-Uninstalling this mod is as easy as deleting one file, you don't even need to delete [BepInEx](https://github.com/BepInEx/BepInEx/releases)!
+Uninstalling this mod is as easy as deleting one file, you don't even need to delete [BepInEx](https://github.com/BepInEx/BepInEx/releases)! **This will break any saves Hard Mode has been used in.**
 - Navigate to `Potion Craft\BepInEx\Plugins`
-- Remove `potioncraft-hardmode.dll` and the `assets` folder from the folder.
+- Remove `potioncraft-hardmode.dll`, `BasicMod.dll` and the `assets` folder from the folder.
 - You are done!
 
 c:
