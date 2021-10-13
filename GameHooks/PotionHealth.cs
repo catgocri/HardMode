@@ -204,9 +204,6 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 			if (__result != null)
 			{
 				__result.health = PotionHealth.health;
-				Debug.Log("We are here");
-				Debug.Log(__result.health);
-				Debug.Log(PotionHealth.visualHealth);
 			}
 		}
 	}

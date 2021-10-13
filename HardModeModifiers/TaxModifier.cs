@@ -24,7 +24,6 @@ namespace catgocrihxpmods.HardMode.PotionCraft
                 NewDayEvent.OnNewDay += (_, e) =>
                 {
                     var value = Mathf.RoundToInt(-taxPercent * Managers.Player.Gold);
-                    Debug.Log("Lost " + value + " gold.");
                     Notification.ShowText("Daily Taxes", value + " gold.", Notification.TextType.EventText);
                     Managers.Player.AddGold(value);
                 };

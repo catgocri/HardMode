@@ -5,6 +5,9 @@ using BepInEx.Configuration;
 using Books.GoalsBook;
 using catgocrihxpmods.HardMode.PotionCraft.GameHooks;
 using HarmonyLib;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -14,6 +17,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
     public class HardModePlugin : BaseUnityPlugin
     {
         public static ConfigEntry<bool> useConfig;
+        public static List<Goal> tier3PotionGoals = new List<Goal>();
 
         void Awake()
         {
@@ -31,13 +35,57 @@ namespace catgocrihxpmods.HardMode.PotionCraft
 
             AchievePotionGoalsEvent.onAchievePotionGoalsEvent += (_, e) => {
                 GoalsLoader.GetGoalByName("potion10").ProgressIncrement();
-            };
+                GoalsLoader.GetGoalByName("potion100").ProgressIncrement();
+                GoalsLoader.GetGoalByName("potion1000").ProgressIncrement();
 
+                int count = (int)Potion.GetArrayOfEffectTypes(e.potion.effects)[0][0];
+                PotionEffect effect = (PotionEffect)Potion.GetArrayOfEffectTypes(e.potion.effects)[0][1];
+
+                if ( count == 3)
+                {
+                    Goal goal = (from g in tier3PotionGoals
+                               where g.descriptionParameters[0] == "#effect_" + effect.name
+                               select g).FirstOrDefault<Goal>();
+
+
+                    if (goal != null)
+                    {
+                        goal.ProgressIncrement();
+                    };
+
+                }
+
+            }; 
+
+
+            BasicMod.GameHooks.GoalManagerStartEvent.OnGoalManagerStart += (_, e) =>
+            {
+                Goal[] allGoalsCraftPotionWithEffect = GoalsLoader.allGoalsCraftPotionWithEffect;
+
+                foreach (Goal goal in allGoalsCraftPotionWithEffect)
+                {
+                    Goal g = GoalFactory.CreateGoal(goal.name + "t3");
+                    string effectName = goal.descriptionParameters[0].Remove(0, 8);
+
+                    LocalDict.AddKeyToDictionary($"goal_{goal.name}t3", $"Make a tier 3 {effectName} potion.");
+
+                    g.descriptionParameters = new List<string>();
+                    g.descriptionParameters.Add(goal.descriptionParameters[0]);
+                    g.experience = PotionEffect.GetByName(effectName).price/2;
+
+
+                    tier3PotionGoals.Add(g);
+                    
+                    GoalFactory.AddGoalToChapter(g, chapter);
+                }
+            };
 
             PotionHealth.Start();
             SetUpGoals();
            
         }
+
+        public static Chapter chapter;
 
         void SetUpGoals()
         {
@@ -56,7 +104,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             g4.targetValue = 1000;
             g4.experience = 50;
 
-            Chapter chapter = GoalFactory.CreateChapter("HMchapter1");
+            chapter = GoalFactory.CreateChapter("HMchapter1");
             chapter.chapterGoal = g1;
 
             LocalDict.AddKeyToDictionary("goal_finishhm", "Complete all goals in HardMode.");
@@ -77,6 +125,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             g2.onGoalCompleted.AddListener(delegate { ExperienceModifier.IncreaseModifier(1); });
             g3.onGoalCompleted.AddListener(delegate { ExperienceModifier.IncreaseModifier(1); });
             g4.onGoalCompleted.AddListener(delegate { ExperienceModifier.IncreaseModifier(1); });
+
 
         }
 
