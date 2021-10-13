@@ -18,8 +18,8 @@ The features this mod adds are:
 - Potion Deterioration. This causes your potion to lose health when it moves through the map. (Configurable & Toggleable)
 - As a follow up to that pouring your base will heal the potion. (Configurable & Toggleable)
 - Potion health is directly correlated with potion tier. You will need health for higher tiers, keep yer potions healthy. (Configurable & Toggleable)
+- Integrated tutorial skip, so you can get going faster on a new save. (Toggleable)
 - A health counter showing the exact amount of potion health your potion has.
-- Integrated tutorial skip, so you can get going faster on a new save.
 - No automatic health regain when outside bone zone.
 ## Config
 - `damagePotionOnMove` Makes the potion take damage when it moves. (Boolean)
