@@ -17,7 +17,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
         public override void LoadFromBindings(ConfigFile config)
         {
             SetActive(config.Bind("Deterioration Settings", "pouringWaterHeals", true, "Heal the potion by pouring in base.").Value);
-            rate = config.Bind("Deterioration Settings", "healingRate", 0.005f, "The rate to heal by.").Value;
+            rate = config.Bind("Deterioration Settings", "healingRate", 0.01f, "The rate to heal by.").Value;
 
             if (this.active)
             {

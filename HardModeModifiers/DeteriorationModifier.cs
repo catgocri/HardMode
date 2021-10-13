@@ -17,7 +17,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
         public override void LoadFromBindings(ConfigFile config)
         {
             SetActive(config.Bind(name + " Settings", "damagePotionOnMove", true, "Makes the potion take damage when it moves.").Value);
-            rate = config.Bind(name + " Settings", "damageRate", 0.002f, "The rate potion takes to deteriorate.").Value;
+            rate = config.Bind(name + " Settings", "damageRate", 0.006f, "The rate potion takes to deteriorate.").Value;
             if (this.active)
             {
 
