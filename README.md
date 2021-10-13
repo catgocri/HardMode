@@ -15,7 +15,7 @@ The features this mod adds are:
 - Merchants are always selling at higher prices. (Configurable & Toggleable)
 - Daily gold tax of 5% after reaching 500 gold. (Configurable & Toggleable)
 - Highlander mode, adding too many of one ingredient fails the potion. (Configurable & Toggleable)
-- Bone zones are buffed. (Configureable & Toggleable)
+- Bone zones are buffed. (Configurable & Toggleable)
 - Less ingredients from garden. (Toggleable)
 - Potion Deterioration. This causes your potion to lose health when it moves through the map. (Configurable & Toggleable)
 - As a follow up to that pouring your base will heal the potion. (Configurable & Toggleable)
