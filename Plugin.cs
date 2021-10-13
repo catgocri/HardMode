@@ -1,5 +1,8 @@
+using BasicMod;
+using BasicMod.Factories;
 using BepInEx;
 using BepInEx.Configuration;
+using Books.GoalsBook;
 using catgocrihxpmods.HardMode.PotionCraft.GameHooks;
 using HarmonyLib;
 using TMPro;
@@ -26,7 +29,54 @@ namespace catgocrihxpmods.HardMode.PotionCraft
                 LoadFromConfig(Config);
             }
 
+            AchievePotionGoalsEvent.onAchievePotionGoalsEvent += (_, e) => {
+                GoalsLoader.GetGoalByName("potion10").ProgressIncrement();
+            };
+
+
             PotionHealth.Start();
+            SetUpGoals();
+           
+        }
+
+        void SetUpGoals()
+        {
+            Goal g1 = GoalFactory.CreateGoal("finishhm");
+            g1.experience = 1000;
+
+            Goal g2 = GoalFactory.CreateGoal("potion10");
+            g2.targetValue = 10;
+            g2.experience = 50;
+
+            Goal g3 = GoalFactory.CreateGoal("potion100");
+            g3.targetValue = 100;
+            g3.experience = 50;
+
+            Goal g4 = GoalFactory.CreateGoal("potion1000");
+            g4.targetValue = 1000;
+            g4.experience = 50;
+
+            Chapter chapter = GoalFactory.CreateChapter("HMchapter1");
+            chapter.chapterGoal = g1;
+
+            LocalDict.AddKeyToDictionary("goal_finishhm", "Complete all goals in HardMode.");
+            LocalDict.AddKeyToDictionary("goal_potion10", "Make 10 potions.");
+            LocalDict.AddKeyToDictionary("goal_potion100", "Make 100 potions.");
+            LocalDict.AddKeyToDictionary("goal_potion1000", "Make 1000 potions.");
+
+            LocalDict.AddKeyToDictionary("finish_current_chapter_to_complete_hmgoalbookchapter", "Each goal you complete in this chapter will increase your global EXP modifier.");
+
+            GoalFactory.AddGoalToChapter(g2, chapter);
+            GoalFactory.AddGoalToChapter(g3, chapter);
+            GoalFactory.AddGoalToChapter(g4, chapter);
+
+
+            ChaptersGroup goalbook = GoalFactory.CreateChaptersGroup("HMGoalbookchapter");
+            GoalFactory.AddChapterToChapterGroup(chapter, goalbook);
+
+            g2.onGoalCompleted.AddListener(delegate { ExperienceModifier.IncreaseModifier(1); });
+            g3.onGoalCompleted.AddListener(delegate { ExperienceModifier.IncreaseModifier(1); });
+            g4.onGoalCompleted.AddListener(delegate { ExperienceModifier.IncreaseModifier(1); });
 
         }
 
@@ -69,6 +119,10 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             HardModeModifier gardenModifier = new GardenModifier();
             GardenModifier.instance = gardenModifier;
             GardenModifier.instance.LoadFromBindings(config);
+
+            HardModeModifier expModifier = new ExperienceModifier();
+            ExperienceModifier.instance = expModifier;
+            ExperienceModifier.instance.LoadFromBindings(config);
         }
 
        
