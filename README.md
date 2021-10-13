@@ -23,7 +23,7 @@ The features this mod adds are:
 - No automatic health regain when outside bone zone.
 ## Config
 - `damagePotionOnMove` Makes the potion take damage when it moves. (Boolean)
-- `damageRate` The rate potion takes to deteriorate. (Float)
+- `damageRate` The rate at which the potion deteriorates. (Float)
 - `pouringWaterHeals` Heal the potion by pouring in base. (Boolean)
 - `healingRate` The rate to heal by. (Float)
 - `doGardenModifier` If the garden's harvest count should be modified. (Boolean)
