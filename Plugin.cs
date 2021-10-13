@@ -18,6 +18,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
     {
         public static ConfigEntry<bool> useConfig;
         public static List<Goal> tier3PotionGoals = new List<Goal>();
+        public static List<Goal> ourGoals = new List<Goal>(); //Help remember goals we add with this mod
 
         void Awake()
         {
@@ -34,6 +35,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             }
 
             AchievePotionGoalsEvent.onAchievePotionGoalsEvent += (_, e) => {
+
                 GoalsLoader.GetGoalByName("potion10").ProgressIncrement();
                 GoalsLoader.GetGoalByName("potion100").ProgressIncrement();
                 GoalsLoader.GetGoalByName("potion1000").ProgressIncrement();
@@ -55,7 +57,20 @@ namespace catgocrihxpmods.HardMode.PotionCraft
 
                 }
 
-            }; 
+            };
+
+            GoalsManagerLoadChaptersEvent.onGoalsManagerLoadChaptersEvent += (_, e) =>
+            {
+                //Easy way to save and load
+                ExperienceModifier.IncreaseModifier(-ExperienceModifier.modifier + 1);
+                foreach(Goal goal in ourGoals)
+                {
+                    if (goal.IsCompleted())
+                    {
+                        ExperienceModifier.IncreaseModifier(1);
+                    }
+                }
+            };
 
 
             BasicMod.GameHooks.GoalManagerStartEvent.OnGoalManagerStart += (_, e) =>
@@ -72,10 +87,12 @@ namespace catgocrihxpmods.HardMode.PotionCraft
                     g.descriptionParameters = new List<string>();
                     g.descriptionParameters.Add(goal.descriptionParameters[0]);
                     g.experience = PotionEffect.GetByName(effectName).price/2;
+                    g.onGoalCompleted.AddListener(delegate { ExperienceModifier.IncreaseModifier(1); });
 
-
+                    ourGoals.Add(g);
                     tier3PotionGoals.Add(g);
                     
+
                     GoalFactory.AddGoalToChapter(g, chapter);
                 }
             };
@@ -103,6 +120,12 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             Goal g4 = GoalFactory.CreateGoal("potion1000");
             g4.targetValue = 1000;
             g4.experience = 50;
+
+            ourGoals.Add(g1);
+            ourGoals.Add(g2);
+            ourGoals.Add(g3);
+            ourGoals.Add(g4);
+
 
             chapter = GoalFactory.CreateChapter("HMchapter1");
             chapter.chapterGoal = g1;
