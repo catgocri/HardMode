@@ -47,12 +47,12 @@ This mod uses BepInEx 5! BepInEx is a mod loader, basically it is what puts the 
 - Drag the extracted folder into your Potion Craft folder, you should be able to find the Potion Craft folder at `C:\Program Files (x86)\Steam\steamapps\common\Potion Craft`
 - Run Potion Craft once with BepInEx installed.
 - Download the mod from the [GitHub](https://github.com/catgocri/HardMode/releases) page.
-- Drag `potioncraft-hardmode.dll` into `Potion Craft\BepInEx\Plugins`
+- Drag `potioncraft-hardmode.dll` and the `assets` folder into `Potion Craft\BepInEx\Plugins`
 - You are good to go!
 ## Deinstallation
 Uninstalling this mod is as easy as deleting one file, you don't even need to delete [BepInEx](https://github.com/BepInEx/BepInEx/releases)!
 - Navigate to `Potion Craft\BepInEx\Plugins`
-- Remove `potioncraft-hardmode.dll` from the folder.
+- Remove `potioncraft-hardmode.dll` and the `assets` folder from the folder.
 - You are done!
 
 c:
