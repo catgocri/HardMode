@@ -21,7 +21,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
 
             onExperienceMultChangeEvent += (_, e) =>
             {
-                TMPMult.text = "Modifier: " + modifier;
+                TMPMult.text = "EXP Modifier: " + modifier;
             };
 
             if (this.active)
