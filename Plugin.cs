@@ -15,7 +15,7 @@ using UnityEngine;
 namespace catgocrihxpmods.HardMode.PotionCraft
 {
     [BepInPlugin("net.catgocrihxpmods.PotionCraft.HardMode", "Potion Craft Hard Mode", "1.0")]
-
+	[BepInDependency("potioncraft.basicmod")]
 
     public class HardModePlugin : BaseUnityPlugin
     {
