@@ -21,7 +21,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
 
             onExperienceMultChangeEvent += (_, e) =>
             {
-                TMPMult.text = "EXP Modifier: " + modifier;
+                TMPMult.text = "EXP Modifier: " + modifier + "x";
             };
 
             if (this.active)
@@ -43,7 +43,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
         {
             var textHolder = new GameObject();
             textHolder.name = "ExpModifierTextHolder";
-            textHolder.transform.Translate(4.5f, -2.8f, 0.0f);
+            textHolder.transform.Translate(4.5f, -2.65f, 0.0f);
             textHolder.layer = 5;
 
             TMPMult = textHolder.AddComponent<TextMeshPro>();
@@ -54,7 +54,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             TMPMult.fontSize = 4;
             TMPMult.fontSizeMin = 4;
             TMPMult.fontSizeMax = 4;
-            TMPMult.color = Color.black;
+            TMPMult.color = new Color32(57, 30, 20, 255);
             TMPMult.text = "Multiplier";
 
             GameObject panel = GameObject.Find("Room Lab/RecipeMap In Room/UI");

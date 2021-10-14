@@ -47,7 +47,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 			TMPHealth.fontSize = 4;
 			TMPHealth.fontSizeMin = 4;
 			TMPHealth.fontSizeMax = 4;
-			TMPHealth.color = Color.black;
+			TMPHealth.color = new Color32(57, 30, 20, 255);
 			TMPHealth.text = "Health";
 
 			GameObject panel = GameObject.Find("Room Lab/RecipeMap In Room/UI");
