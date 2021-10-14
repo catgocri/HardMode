@@ -4,6 +4,7 @@ using BepInEx;
 using BepInEx.Configuration;
 using Books.GoalsBook;
 using catgocrihxpmods.HardMode.PotionCraft.GameHooks;
+using catgocrihxpmods.HardMode.PotionCraft.Talents;
 using HarmonyLib;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,14 @@ using UnityEngine;
 namespace catgocrihxpmods.HardMode.PotionCraft
 {
     [BepInPlugin("net.catgocrihxpmods.PotionCraft.HardMode", "Potion Craft Hard Mode", "1.0")]
+
+
     public class HardModePlugin : BaseUnityPlugin
     {
         public static ConfigEntry<bool> useConfig;
         public static List<Goal> tier3PotionGoals = new List<Goal>();
         public static List<Goal> ourGoals = new List<Goal>(); //Help remember goals we add with this mod
+        public static Vector3 logoPos = new Vector3(4.5f, -0.7f, 0.0f);
 
         void Awake()
         {
@@ -97,9 +101,39 @@ namespace catgocrihxpmods.HardMode.PotionCraft
                 }
             };
 
+            BasicMod.Factories.TalentFactory.onPreRegisterTalentsEvent += (_, e) =>
+            {
+                TalentHaggleInfinite th = ScriptableObject.CreateInstance<TalentHaggleInfinite>();
+                th.name = "inf_haggle_talent";
+                th.parentTalent = TalentFactory.lastHaggleTalent;
+                th.cost = 4;
+                TalentFactory.lastHaggleTalent.nextTalent = th;
+
+                TalentFactory.AddTalent(th);
+
+
+            };
+
+
+
+            AddSprite();
             PotionHealth.Start();
             SetUpGoals();
            
+        }
+
+        public static void AddSprite()
+        {
+            var spriteHolder = new GameObject();
+            spriteHolder.name = "HardModeSpriteHolder";
+            spriteHolder.transform.Translate(logoPos);
+            spriteHolder.layer = 5;
+
+            var sprite = spriteHolder.AddComponent<SpriteRenderer>();
+            sprite.sprite = SpriteLoader.LoadSpriteFromFile("hardmodelogosmall.png");
+            sprite.sortingLayerID = 1812034761;
+
+
         }
 
         public static Chapter chapter;

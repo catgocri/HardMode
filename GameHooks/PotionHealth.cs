@@ -25,7 +25,6 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 		public static void Start()
         {
 			AddHealthText();
-			AddSprite();
 			OnUpdateHealth += (sender, e) =>
 			{
 				TMPHealth.text = "HardMode\nHealth: " + Mathf.FloorToInt(health * 100f).ToString();
@@ -36,7 +35,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 		{
 			var textHolder = new GameObject();
 			textHolder.name = "PotionHealthTextHolder";
-			textHolder.transform.Translate(4.5f, -2.0f, 0.0f);
+			textHolder.transform.Translate(HardModePlugin.logoPos+ new Vector3(0,-1f));
 			textHolder.layer = 5;
 
 			TMPHealth = textHolder.AddComponent<TextMeshPro>();
@@ -44,10 +43,10 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 			TMPHealth.enableAutoSizing = true;
 			TMPHealth.sortingLayerID = -1650695527;
 			TMPHealth.sortingOrder = 100;
-			TMPHealth.fontSize = 4;
-			TMPHealth.fontSizeMin = 4;
-			TMPHealth.fontSizeMax = 4;
-			TMPHealth.color = new Color32(57, 30, 20, 255);
+			TMPHealth.fontSize = 3;
+			TMPHealth.fontSizeMin = 3;
+			TMPHealth.fontSizeMax = 3;
+			TMPHealth.color = Color.black;
 			TMPHealth.text = "Health";
 
 			GameObject panel = GameObject.Find("Room Lab/RecipeMap In Room/UI");
@@ -57,19 +56,6 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 			}
 		}
 
-		public static void AddSprite()
-		{
-			var spriteHolder = new GameObject();
-			spriteHolder.name = "HardModeSpriteHolder";
-			spriteHolder.transform.Translate(4.5f, -1f, 0.0f);
-			spriteHolder.layer = 5;
-
-			var sprite = spriteHolder.AddComponent<SpriteRenderer>();
-			sprite.sprite = SpriteLoader.LoadSpriteFromFile("hardmodelogosmall.png");
-			sprite.sortingLayerID = 1812034761;
-
-
-		}
 
 		public static void SetHealth(float newHealth)
 		{
@@ -87,7 +73,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 
 		public static void KillPotion()
         {
-            Reflection.CallPrivateMethod(Managers.RecipeMap.indicator, "OnIndicatorRuined");
+            BasicMod.Utility.Reflection.InvokePrivateMethod(Managers.RecipeMap.indicator, "OnIndicatorRuined");
         }
     }
 
