@@ -35,7 +35,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 		{
 			var textHolder = new GameObject();
 			textHolder.name = "PotionHealthTextHolder";
-			textHolder.transform.Translate(HardModePlugin.logoPos+ new Vector3(0,-1f));
+			textHolder.transform.Translate(HardModePlugin.logoPos+ new Vector3(0,-1.1f));
 			textHolder.layer = 5;
 
 			TMPHealth = textHolder.AddComponent<TextMeshPro>();
@@ -46,7 +46,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 			TMPHealth.fontSize = 3;
 			TMPHealth.fontSizeMin = 3;
 			TMPHealth.fontSizeMax = 3;
-			TMPHealth.color = Color.black;
+			TMPHealth.color = new Color32(57, 30, 20, 255);
 			TMPHealth.text = "Health";
 
 			GameObject panel = GameObject.Find("Room Lab/RecipeMap In Room/UI");
