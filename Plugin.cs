@@ -103,6 +103,11 @@ namespace catgocrihxpmods.HardMode.PotionCraft
 
             BasicMod.Factories.TalentFactory.onPreRegisterTalentsEvent += (_, e) =>
             {
+
+                LocalDict.AddKeyToDictionary("talent_inf_haggle_talent","Infinite Haggling");
+                LocalDict.AddKeyToDictionary("talent_description_inf_haggle_talent", "Each level in this talent raises your total haggle reward by 5%");
+
+
                 TalentHaggleInfinite th = ScriptableObject.CreateInstance<TalentHaggleInfinite>();
                 th.name = "inf_haggle_talent";
                 th.parentTalent = TalentFactory.lastHaggleTalent;
