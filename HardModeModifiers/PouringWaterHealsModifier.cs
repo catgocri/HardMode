@@ -14,6 +14,8 @@ namespace catgocrihxpmods.HardMode.PotionCraft
     {
         public new string name = "Water heals";
         public float rate = 0.01f;
+
+        public int dobonus;
         public override void LoadFromBindings(ConfigFile config)
         {
             SetActive(config.Bind("Deterioration Settings", "pouringWaterHeals", true, "Heal the potion by pouring in base.").Value);
@@ -29,7 +31,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
                     Vector2 vector = RMM.recipeMapObject.indicatorContainer.localPosition;
                     Vector2 vector2 = Vector2.MoveTowards(vector, objectLocalPosition, RMM.GetSpeedOfMovingTowardsBase(e.liquidAmount));
                     float movedDistance = (vector2 - vector).magnitude;
-                    PotionHealth.SetHealth(PotionHealth.health + (movedDistance* rate));
+                    PotionHealth.SetHealth(PotionHealth.health + (movedDistance* rate) * (2f - PotionHealth.health));
                 };
 
 
