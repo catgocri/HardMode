@@ -17,7 +17,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
         {
             SetActive(config.Bind(name + " Settings", "doExperienceModifier", true, "If completing hard mode goals should add an experience multiplier.").Value);
 
-            AddExpModifierText();
+            
 
             onExperienceMultChangeEvent += (_, e) =>
             {
@@ -26,6 +26,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
 
             if (this.active)
             {
+                AddExpModifierText();
                 AddExperienceEvent.onAddExperienceEvent += (sender, e) =>
                 {
                     //Debug.Log(e.amount);

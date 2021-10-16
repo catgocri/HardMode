@@ -1,6 +1,7 @@
 
 using System;
 using System.Reflection;
+using BepInEx.Configuration;
 using HarmonyLib;
 using ObjectBased.RecipeMap.RecipeMapItem.IndicatorMapItem;
 using TMPro;
@@ -13,29 +14,40 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 
 
 
-    public static class PotionHealth
-    {
-        public static EventHandler<UpdateHealthEventArgs> OnUpdateHealth;
-        public static float health = 1.0f;
-        public static float visualHealth = 1.0f;
+	public static class PotionHealth
+	{
+		public static EventHandler<UpdateHealthEventArgs> OnUpdateHealth;
+		public static float health = 1.0f;
+		public static float visualHealth = 1.0f;
 		public static float boneDamage = 0.4f;//Vanilla
 		public static TextMeshPro TMPHealth;
 
+		public static bool healWhenSafe;
 
 		public static void Start()
-        {
-			AddHealthText();
-			OnUpdateHealth += (sender, e) =>
+		{
+			if (!healWhenSafe)
 			{
-				TMPHealth.text = "HardMode\nHealth: " + Mathf.FloorToInt(health * 100f).ToString();
+				AddHealthText();
+				OnUpdateHealth += (sender, e) =>
+				{
+					TMPHealth.text = "HardMode\nHealth: " + Mathf.FloorToInt(health * 100f).ToString();
+				};
 			};
-        }
+
+
+		}
+
+		public static void LoadFromBindings(ConfigFile config)
+		{
+			healWhenSafe = config.Bind("Hea;th Settings", "healWhenSafe", false, "Potion heals instantly when out of dange").Value;
+		}
 
 		public static void AddHealthText()
 		{
 			var textHolder = new GameObject();
 			textHolder.name = "PotionHealthTextHolder";
-			textHolder.transform.Translate(HardModePlugin.logoPos+ new Vector3(0,-1.1f));
+			textHolder.transform.Translate(HardModePlugin.logoPos + new Vector3(0, -1f));
 			textHolder.layer = 5;
 
 			TMPHealth = textHolder.AddComponent<TextMeshPro>();
@@ -46,7 +58,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 			TMPHealth.fontSize = 3;
 			TMPHealth.fontSizeMin = 3;
 			TMPHealth.fontSizeMax = 3;
-			TMPHealth.color = new Color32(57, 30, 20, 255);
+			TMPHealth.color = Color.black;
 			TMPHealth.text = "Health";
 
 			GameObject panel = GameObject.Find("Room Lab/RecipeMap In Room/UI");
@@ -72,10 +84,10 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 		}
 
 		public static void KillPotion()
-        {
-            BasicMod.Utility.Reflection.InvokePrivateMethod(Managers.RecipeMap.indicator, "OnIndicatorRuined");
-        }
-    }
+		{
+			BasicMod.Utility.Reflection.InvokePrivateMethod(Managers.RecipeMap.indicator, "OnIndicatorRuined");
+		}
+	}
 
 	public class UpdateHealthEventArgs : EventArgs
 	{
@@ -117,12 +129,20 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 					PotionHealth.SetHealth(Mathf.Clamp01(PotionHealth.health + num + num4));
 					//visualHealth = health;
 				}
+				else
+				{
+					if (PotionHealth.healWhenSafe)
+					{
+						PotionHealth.visualHealth = Mathf.Clamp01(PotionHealth.visualHealth + Time.deltaTime / indicatorSettings.indicatorVisualHealthRegenerationTime);
+						PotionHealth.SetHealth(1f);
+					}
+				}
 			}
 
 
 
-				//Kill potion stuff
-				if (PotionHealth.health.Is(0f))
+			//Kill potion stuff
+			if (PotionHealth.health.Is(0f))
 			{
 				PotionHealth.KillPotion();
 			}

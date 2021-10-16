@@ -20,6 +20,9 @@ namespace catgocrihxpmods.HardMode.PotionCraft
     public class HardModePlugin : BaseUnityPlugin
     {
         public static ConfigEntry<bool> useConfig;
+        public static ConfigEntry<bool> infHaggle;
+        public static ConfigEntry<bool> bonusGoals;
+        public static ConfigEntry<bool> showWatermark;
         public static List<Goal> tier3PotionGoals = new List<Goal>();
         public static List<Goal> ourGoals = new List<Goal>(); //Help remember goals we add with this mod
         public static Vector3 logoPos = new Vector3(4.5f, -0.7f, 0.0f);
@@ -32,11 +35,16 @@ namespace catgocrihxpmods.HardMode.PotionCraft
 
             //Don't actually turn this off. Will likely break the game c:
             useConfig = Config.Bind("Hardmode main settings", "useConfig", true, "Whether to use the rest of this config. Turning this off will cause Hardmode to do nothing unless used by other mods.");
+            showWatermark = Config.Bind("Hardmode main settings", "showWatermark", true,"Shows the HardMode watermark");
+            bonusGoals = Config.Bind("Hardmode main settings", "bonusGoals", true, "Gives bonus goals that also increase your experience modifier.");
+            infHaggle = Config.Bind("Hardmode main settings", "infiniteHaggle", true, "Adds a haggle talent at the end of the tree that can be gained infinitely");
 
             if (useConfig.Value)
             {
                 LoadFromConfig(Config);
             }
+
+
 
             AchievePotionGoalsEvent.onAchievePotionGoalsEvent += (_, e) => {
 
@@ -65,13 +73,16 @@ namespace catgocrihxpmods.HardMode.PotionCraft
 
             GoalsManagerLoadChaptersEvent.onGoalsManagerLoadChaptersEvent += (_, e) =>
             {
-                //Easy way to save and load
-                ExperienceModifier.IncreaseModifier(-ExperienceModifier.modifier + 1);
-                foreach(Goal goal in ourGoals)
+                if (ExperienceModifier.instance.active)
                 {
-                    if (goal.IsCompleted())
+                    //Easy way to save and load
+                    ExperienceModifier.IncreaseModifier(-ExperienceModifier.modifier + 1);
+                    foreach (Goal goal in ourGoals)
                     {
-                        ExperienceModifier.IncreaseModifier(1);
+                        if (goal.IsCompleted())
+                        {
+                            ExperienceModifier.IncreaseModifier(1);
+                        }
                     }
                 }
             };
@@ -79,51 +90,56 @@ namespace catgocrihxpmods.HardMode.PotionCraft
 
             BasicMod.GameHooks.GoalManagerStartEvent.OnGoalManagerStart += (_, e) =>
             {
-                Goal[] allGoalsCraftPotionWithEffect = GoalsLoader.allGoalsCraftPotionWithEffect;
-
-                foreach (Goal goal in allGoalsCraftPotionWithEffect)
+                if (bonusGoals.Value)
                 {
-                    Goal g = GoalFactory.CreateGoal(goal.name + "t3");
-                    string effectName = goal.descriptionParameters[0].Remove(0, 8);
+                    Goal[] allGoalsCraftPotionWithEffect = GoalsLoader.allGoalsCraftPotionWithEffect;
 
-                    LocalDict.AddKeyToDictionary($"goal_{goal.name}t3", $"Make a tier 3 {effectName} potion.");
+                    foreach (Goal goal in allGoalsCraftPotionWithEffect)
+                    {
+                        Goal g = GoalFactory.CreateGoal(goal.name + "t3");
+                        string effectName = goal.descriptionParameters[0].Remove(0, 8);
 
-                    g.descriptionParameters = new List<string>();
-                    g.descriptionParameters.Add(goal.descriptionParameters[0]);
-                    g.experience = PotionEffect.GetByName(effectName).price/2;
-                    g.onGoalCompleted.AddListener(delegate { ExperienceModifier.IncreaseModifier(1); });
+                        LocalDict.AddKeyToDictionary($"goal_{goal.name}t3", $"Make a tier 3 {effectName} potion.");
 
-                    ourGoals.Add(g);
-                    tier3PotionGoals.Add(g);
-                    
+                        g.descriptionParameters = new List<string>();
+                        g.descriptionParameters.Add(goal.descriptionParameters[0]);
+                        g.experience = PotionEffect.GetByName(effectName).price / 2;
+                        g.onGoalCompleted.AddListener(delegate { ExperienceModifier.IncreaseModifier(1); });
 
-                    GoalFactory.AddGoalToChapter(g, chapter);
+                        ourGoals.Add(g);
+                        tier3PotionGoals.Add(g);
+
+
+                        GoalFactory.AddGoalToChapter(g, chapter);
+                    }
                 }
             };
 
             BasicMod.Factories.TalentFactory.onPreRegisterTalentsEvent += (_, e) =>
             {
-
-                LocalDict.AddKeyToDictionary("talent_inf_haggle_talent","Infinite Haggling");
-                LocalDict.AddKeyToDictionary("talent_description_inf_haggle_talent", "Each level in this talent raises your total haggle reward by 5%");
-
-
-                TalentHaggleInfinite th = ScriptableObject.CreateInstance<TalentHaggleInfinite>();
-                th.name = "inf_haggle_talent";
-                th.parentTalent = TalentFactory.lastHaggleTalent;
-                th.cost = 4;
-                TalentFactory.lastHaggleTalent.nextTalent = th;
-
-                TalentFactory.AddTalent(th);
+                if (infHaggle.Value)
+                {
+                    LocalDict.AddKeyToDictionary("talent_inf_haggle_talent", "Infinite Haggling");
+                    LocalDict.AddKeyToDictionary("talent_description_inf_haggle_talent", "Each level in this talent raises your total haggle reward by 5%");
 
 
+                    TalentHaggleInfinite th = ScriptableObject.CreateInstance<TalentHaggleInfinite>();
+                    th.name = "inf_haggle_talent";
+                    th.parentTalent = TalentFactory.lastHaggleTalent;
+                    th.cost = 4;
+                    TalentFactory.lastHaggleTalent.nextTalent = th;
+
+                    TalentFactory.AddTalent(th);
+
+                }
             };
 
 
 
-            AddSprite();
+            if (showWatermark.Value)  AddSprite();
             PotionHealth.Start();
-            SetUpGoals();
+            PotionHealth.LoadFromBindings(Config);
+            if( bonusGoals.Value ) SetUpGoals();
            
         }
 
