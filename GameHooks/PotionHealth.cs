@@ -40,7 +40,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 
 		public static void LoadFromBindings(ConfigFile config)
 		{
-			healWhenSafe = config.Bind("Hea;th Settings", "healWhenSafe", false, "Potion heals instantly when out of dange").Value;
+			healWhenSafe = config.Bind("Health Settings", "healWhenSafe", false, "Potion heals instantly when out of dange").Value;
 		}
 
 		public static void AddHealthText()
@@ -58,7 +58,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 			TMPHealth.fontSize = 3;
 			TMPHealth.fontSizeMin = 3;
 			TMPHealth.fontSizeMax = 3;
-			TMPHealth.color = Color.black;
+			TMPHealth.color = new Color32(57, 30, 20, 255);
 			TMPHealth.text = "Health";
 
 			GameObject panel = GameObject.Find("Room Lab/RecipeMap In Room/UI");
