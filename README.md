@@ -21,10 +21,10 @@ The features this mod adds are:
 - As a follow up to that pouring your base will heal the potion. (Configurable & Toggleable)
 - Potion health is directly correlated with potion tier. You will need health for higher tiers, keep yer potions healthy. (Configurable & Toggleable)
 - Integrated tutorial skip, so you can get going faster on a new save. (Toggleable)
-- A health counter showing the exact amount of potion health your potion has.
-- Custom hard mode goals, completing these goals increases an experience point gain modifier.
-- An infinite haggling talent, allowing you to infinitely level up your haggling talent, if you have enough talent points.
-- No automatic health regain when outside bone zone.
+- A health counter showing the exact amount of potion health your potion has. (Toggleable)
+- Custom hard mode goals, completing these goals increases an experience point gain modifier. (Toggleable)
+- An infinite haggling talent, allowing you to infinitely level up your haggling talent, if you have enough talent points. (Toggleable)
+- No automatic health regain when outside bone zone. (Toggleable)
 ## Config (Found at BepInEx/Config)
 - `damagePotionOnMove` Makes the potion take damage when it moves. (Boolean)
 - `damageRate` The rate at which the potion deteriorates. (Float)
