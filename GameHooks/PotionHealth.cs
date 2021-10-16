@@ -47,7 +47,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 		{
 			var textHolder = new GameObject();
 			textHolder.name = "PotionHealthTextHolder";
-			textHolder.transform.Translate(HardModePlugin.logoPos + new Vector3(0, -1f));
+			textHolder.transform.Translate(HardModePlugin.logoPos + new Vector3(0, -1.1f));
 			textHolder.layer = 5;
 
 			TMPHealth = textHolder.AddComponent<TextMeshPro>();
