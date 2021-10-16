@@ -21,18 +21,23 @@ The features this mod adds are:
 - As a follow up to that pouring your base will heal the potion. (Configurable & Toggleable)
 - Potion health is directly correlated with potion tier. You will need health for higher tiers, keep yer potions healthy. (Configurable & Toggleable)
 - Integrated tutorial skip, so you can get going faster on a new save. (Toggleable)
-- A health counter showing the exact amount of potion health your potion has.
-- Custom hard mode goals, completing these goals increases an experience point gain modifier.
-- An infinite haggling talent, allowing you to infinitely level up your haggling talent, if you have enough talent points.
-- No automatic health regain when outside bone zone.
+- A health counter showing the exact amount of potion health your potion has. (Toggleable)
+- Custom hard mode goals, completing these goals increases an experience point gain modifier. (Toggleable)
+- An infinite haggling talent, allowing you to infinitely level up your haggling talent, if you have enough talent points. (Toggleable)
+- No automatic health regain when outside bone zone. (Toggleable)
 ## Config (Found at BepInEx/Config)
 - `damagePotionOnMove` Makes the potion take damage when it moves. (Boolean)
 - `damageRate` The rate at which the potion deteriorates. (Float)
 - `pouringWaterHeals` Heal the potion by pouring in base. (Boolean)
 - `healingRate` The rate to heal by. (Float)
+- `doExperienceModifier` If completing hard mode goals should add an experience multiplier. (Boolean)
 - `doGardenModifier` If the garden's harvest count should be modified. (Boolean)
 - `useConfig` Whether to use the config. Turning this off will cause Hardmode to do nothing unless used by other mods. (Boolean)
+- `showWatermark` Shows the HardMode watermark. (Boolean)
+- `bonusGoals` Gives bonus goals that also increase your experience modifier. (Boolean)
+- `infiniteHaggle` Adds a haggle talent at the end of the tree that can be gained infinitely. (Boolean)
 - `boneDamage` The amount of damage you take while moving a full unit touching bones. Vanilla default is 0.4. (Float)
+- `healWhenSafe` Potion heals instantly when out of danger. (Boolean)
 - `highlanderActive` If active, potions will fail when adding more than the amount detailed below of a single ingredient. (Boolean)
 - `maxDuplicateIngredients` What the maximum amount of duplicate ingredients can be before the potion fails. (Integer)
 - `modifyPrices` Makes merchants always sell at markup. (Boolean)
