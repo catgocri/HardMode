@@ -36,7 +36,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             //Don't actually turn this off. Will likely break the game c:
             useConfig = Config.Bind("Hardmode main settings", "useConfig", true, "Whether to use the rest of this config. Turning this off will cause Hardmode to do nothing unless used by other mods.");
             showWatermark = Config.Bind("Hardmode main settings", "showWatermark", true,"Shows the HardMode watermark");
-            bonusGoals = Config.Bind("Hardmode main settings", "bonusGoals", true, "Gives bonus goals that also increase your experience modifier.");
+            bonusGoals = Config.Bind("Hardmode main settings", "bonusGoals", true, "Gives bonus goals that also increase your experience modifier. BREAKS SAVES THAT BONUS GOALS HAVE BEEN USED IN WHEN TURNED OFF.");
             infHaggle = Config.Bind("Hardmode main settings", "infiniteHaggle", true, "Adds a haggle talent at the end of the tree that can be gained infinitely");
 
             if (useConfig.Value)
