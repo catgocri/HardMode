@@ -70,7 +70,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             modifier += amount;
             var e = new ExperienceMultChangeEventArgs();
             onExperienceMultChangeEvent.Invoke(null,e);
-            Notification.ShowText("EXP Modifier", "+" + Math.Round(modifier, 2) + " experience!", Notification.TextType.LevelUpText);
+            Notification.ShowText("EXP Modifier", "+" + Math.Round(amount, 2) + " modifier!", Notification.TextType.LevelUpText);
         }
     }
 
