@@ -49,6 +49,7 @@ The features this mod adds are:
 - `taxThreshold` The minimum amount of Gold you must have before being charged taxes. (Integer)
 ## Known Bugs
 - Game shows that you have been taxed 5 gold on startup (even though you haven't).
+- Game shows the experience modifier gain notification on startup.
 - Potion liquid doesn't start shaking when health is not full.
 ## Installation
 This mod uses BepInEx 5! BepInEx is a mod loader, basically it is what puts the edited code into the game.
