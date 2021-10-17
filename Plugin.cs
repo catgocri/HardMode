@@ -81,7 +81,8 @@ namespace catgocrihxpmods.HardMode.PotionCraft
                     {
                         if (goal.IsCompleted())
                         {
-                            ExperienceModifier.IncreaseModifier(1);
+                            float fgoalexperience = (float)goal.experience;
+                            ExperienceModifier.IncreaseModifier(fgoalexperience/500f);
                         }
                     }
                 }
@@ -104,7 +105,8 @@ namespace catgocrihxpmods.HardMode.PotionCraft
                         g.descriptionParameters = new List<string>();
                         g.descriptionParameters.Add(goal.descriptionParameters[0]);
                         g.experience = PotionEffect.GetByName(effectName).price / 2;
-                        g.onGoalCompleted.AddListener(delegate { ExperienceModifier.IncreaseModifier(1); });
+                        float fgexperience = (float)g.experience; 
+                        g.onGoalCompleted.AddListener(delegate { ExperienceModifier.IncreaseModifier(fgexperience/500f); });
 
                         ourGoals.Add(g);
                         tier3PotionGoals.Add(g);
@@ -167,14 +169,17 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             Goal g2 = GoalFactory.CreateGoal("potion10");
             g2.targetValue = 10;
             g2.experience = 50;
+            float fg2experience = (float)g2.experience;
 
             Goal g3 = GoalFactory.CreateGoal("potion100");
             g3.targetValue = 100;
             g3.experience = 50;
+            float fg3experience = (float)g3.experience;
 
             Goal g4 = GoalFactory.CreateGoal("potion1000");
             g4.targetValue = 1000;
             g4.experience = 50;
+            float fg4experience = (float)g4.experience;
 
             ourGoals.Add(g1);
             ourGoals.Add(g2);
@@ -200,9 +205,9 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             ChaptersGroup goalbook = GoalFactory.CreateChaptersGroup("HMGoalbookchapter");
             GoalFactory.AddChapterToChapterGroup(chapter, goalbook);
 
-            g2.onGoalCompleted.AddListener(delegate { ExperienceModifier.IncreaseModifier(1); });
-            g3.onGoalCompleted.AddListener(delegate { ExperienceModifier.IncreaseModifier(1); });
-            g4.onGoalCompleted.AddListener(delegate { ExperienceModifier.IncreaseModifier(1); });
+            g2.onGoalCompleted.AddListener(delegate { ExperienceModifier.IncreaseModifier(fg2experience/500f); });
+            g3.onGoalCompleted.AddListener(delegate { ExperienceModifier.IncreaseModifier(fg3experience/500f); });
+            g4.onGoalCompleted.AddListener(delegate { ExperienceModifier.IncreaseModifier(fg4experience/500f); });
 
 
         }

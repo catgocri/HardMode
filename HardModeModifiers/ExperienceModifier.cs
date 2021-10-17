@@ -11,7 +11,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
     public class ExperienceModifier : HardModeModifier
     {
         public new string name = "Experience";
-        public static float modifier = 1;
+        public static float modifier = 1.00f;
         public static EventHandler<ExperienceMultChangeEventArgs> onExperienceMultChangeEvent;
         public override void LoadFromBindings(ConfigFile config)
         {
@@ -21,7 +21,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
 
             onExperienceMultChangeEvent += (_, e) =>
             {
-                TMPMult.text = "EXP Modifier: " + modifier + "x";
+                TMPMult.text = "EXP Modifier: " + Math.Round(modifier, 2) + "x";
             };
 
             if (this.active)
@@ -70,6 +70,7 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             modifier += amount;
             var e = new ExperienceMultChangeEventArgs();
             onExperienceMultChangeEvent.Invoke(null,e);
+            Notification.ShowText("EXP Modifier", "+" + Math.Round(modifier, 2) + " experience!", Notification.TextType.LevelUpText);
         }
     }
 
