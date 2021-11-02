@@ -139,7 +139,6 @@ namespace catgocrihxpmods.HardMode.PotionCraft
 
 
             if (showWatermark.Value)  AddSprite();
-            PotionHealth.Start();
             PotionHealth.LoadFromBindings(Config);
             if( bonusGoals.Value ) SetUpGoals();
            

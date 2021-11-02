@@ -23,10 +23,13 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 		public static TextMeshPro TMPHealth;
 
 		public static bool healWhenSafe;
-
-		public static void Start()
+		
+		public static bool doHealthText;
+		public static void LoadFromBindings(ConfigFile config)
 		{
-			if (!healWhenSafe)
+			healWhenSafe = config.Bind("Health Settings", "healWhenSafe", false, "Potion heals instantly when out of danger.").Value;
+			doHealthText = config.Bind("Health Settings", "doHealthText", true, "If the text showing your health should be visible.").Value;
+			if (doHealthText == true)
 			{
 				AddHealthText();
 				OnUpdateHealth += (sender, e) =>
@@ -34,13 +37,6 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 					TMPHealth.text = "HardMode\nHealth: " + Mathf.FloorToInt(health * 100f).ToString();
 				};
 			};
-
-
-		}
-
-		public static void LoadFromBindings(ConfigFile config)
-		{
-			healWhenSafe = config.Bind("Health Settings", "healWhenSafe", false, "Potion heals instantly when out of danger").Value;
 		}
 
 		public static void AddHealthText()
