@@ -8,10 +8,6 @@ namespace catgocrihxpmods.HardMode.PotionCraft
         public static HardModeModifier instance;
         public bool active = false;
 
-        protected HardModeModifier()
-        {
-            instance = this;
-        }
 
         public void SetActive(bool a)
         {
