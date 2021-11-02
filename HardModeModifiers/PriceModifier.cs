@@ -10,10 +10,8 @@ namespace catgocrihxpmods.HardMode.PotionCraft
         public override void LoadFromBindings(ConfigFile config)
         {
             SetActive(config.Bind(name + " Settings", "modifyPrices", true, "Makes merchants always sell at markup.").Value);
-            if (this.active)
-            {
-                ItemDiscount.OnCalculateItemDiscount += (_, e) => e.CostMultiplier = 2;
-            }
+
+            ItemDiscount.OnCalculateItemDiscount += (_, e) => e.CostMultiplier = 2;
         }
     }
 }
