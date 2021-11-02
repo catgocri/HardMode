@@ -64,7 +64,6 @@ namespace catgocrihxpmods.HardMode.PotionCraft
 
 
             if (showWatermark.Value)  AddSprite();
-            PotionHealth.Start();
             PotionHealth.LoadFromBindings(Config);
            
         }
@@ -92,39 +91,30 @@ namespace catgocrihxpmods.HardMode.PotionCraft
             PotionHealth.boneDamage = -Config.Bind("Hardmode main settings", "boneDamage", 0.8f, "The amount of damage you take while moving a full unit touching bones. Vanilla default is 0.4.").Value;
 
             HardModeModifier tutorialModifier = new NoStartTutorialModifier();
-            NoStartTutorialModifier.instance = tutorialModifier;
             NoStartTutorialModifier.instance.LoadFromBindings(config);
 
             HardModeModifier highlanderModifier = new HighlanderModifier();
-            HighlanderModifier.instance = highlanderModifier;
             HighlanderModifier.instance.LoadFromBindings(config);
 
             HardModeModifier priceModifier = new PriceModifier();
-            PriceModifier.instance = priceModifier;
             PriceModifier.instance.LoadFromBindings(config);
 
             HardModeModifier taxModifier = new TaxModifier();
-            TaxModifier.instance = taxModifier;
             TaxModifier.instance.LoadFromBindings(config);
 
             HardModeModifier deteriorationModifer = new DeteriorationModifier();
-            DeteriorationModifier.instance = deteriorationModifer;
             DeteriorationModifier.instance.LoadFromBindings(config);
 
             HardModeModifier waterhealsModifer = new PouringWaterHealsModifier();
-            PouringWaterHealsModifier.instance = waterhealsModifer;
             PouringWaterHealsModifier.instance.LoadFromBindings(config);
 
             HardModeModifier healthaffectstierModifer = new HealthAffectsPotionTier();
-            HealthAffectsPotionTier.instance = healthaffectstierModifer;
             HealthAffectsPotionTier.instance.LoadFromBindings(config);
 
             HardModeModifier gardenModifier = new GardenModifier();
-            GardenModifier.instance = gardenModifier;
             GardenModifier.instance.LoadFromBindings(config);
 
             HardModeModifier expModifier = new ExperienceModifier();
-            ExperienceModifier.instance = expModifier;
             ExperienceModifier.instance.LoadFromBindings(config);
         }
 

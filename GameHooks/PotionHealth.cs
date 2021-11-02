@@ -24,8 +24,9 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 
 		public static bool healWhenSafe;
 
-		public static void Start()
+		public static void LoadFromBindings(ConfigFile config)
 		{
+			healWhenSafe = config.Bind("Health Settings", "healWhenSafe", false, "Potion heals instantly when out of danger").Value;
 			if (!healWhenSafe)
 			{
 				AddHealthText();
@@ -35,12 +36,6 @@ namespace catgocrihxpmods.HardMode.PotionCraft.GameHooks
 				};
 			};
 
-
-		}
-
-		public static void LoadFromBindings(ConfigFile config)
-		{
-			healWhenSafe = config.Bind("Health Settings", "healWhenSafe", false, "Potion heals instantly when out of danger").Value;
 		}
 
 		public static void AddHealthText()
